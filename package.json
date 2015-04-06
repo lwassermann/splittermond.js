@@ -1,6 +1,6 @@
 {
   "name": "splittermond.js",
-  "main": "src/main.js",
+  "main": "src/main.jsx",
   "version": "0.0.1",
   "dependencies": {
     "react": "*",
@@ -11,8 +11,8 @@
     "babelify": "~6.0.1"
   },
   "scripts": {
-    "build": "browserify src/main.js -o splittermond.js",
-    "watch": "watchify src/main.js -o splittermond.js --debug --verbose"
+    "build": "browserify src/main.jsx -o splittermond.js",
+    "watch": "watchify src/main.jsx -o splittermond.js --debug --verbose"
   },
   "browserify": {
     "transform": [
