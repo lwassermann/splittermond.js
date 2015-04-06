@@ -4,14 +4,14 @@ var React = require('react');
 
 var TextInput = React.createClass({
   render() {
-    return (<input type="text" value={this.props.content} />)
+    return (<input type="text" value={this.props.content} />);
   }
-})
+});
 
 var CharakterDokument = React.createClass({
   render() {
     return (
-      <TextInput content={this.props.model.name} />
+      <Name model={this.props.model} />
       );
   }
 });
@@ -34,7 +34,7 @@ var Ability = React.createClass({
 var Name = React.createClass({
   render() {
     return (
-      <div class="char-name">{this.props.name}</div>
+      <TextInput class="char-name" content={this.props.model.name} />
     );
   }
 });
