@@ -21,7 +21,7 @@ var Ability = React.createClass({
     return (
       <div class='ability'>
         <span class='ability-name'>{this.props.name}</span>
-        <span class='ability-aggregated'></span>
+        <span class='ability-aggregated'>{this.props.att1 + this.props.att2 + this.props.points + this.props.mod}</span>
         <span class='ability-points'></span>
         <span class='ability-att1'></span>
         <span class='ability-att2'></span>
