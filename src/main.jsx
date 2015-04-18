@@ -1,5 +1,6 @@
 'use strict';
 
+var storage = require('./storage');
 var React = require('react');
 
 var TextInput = React.createClass({
@@ -11,7 +12,10 @@ var TextInput = React.createClass({
 var CharakterDokument = React.createClass({
   render() {
     return (
-      <Name model={this.props.model} />
+      <div>
+        <Name model={this.props.model} />
+        <input type="text" />
+      </div>
       );
   }
 });
@@ -39,11 +43,7 @@ var Name = React.createClass({
   }
 });
 
-var someChar = {
-  name: 'Charley'
-};
-
 React.render(
-  <CharakterDokument model={someChar}></CharakterDokument>,
+  <CharakterDokument model={storage.someChar}></CharakterDokument>,
   document.getElementById('content')
 );
