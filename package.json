@@ -16,7 +16,7 @@
   },
   "browserify": {
     "transform": [
-      "babelify"
+      ["babelify", {"sourceMaps": true}]
     ]
   }
 }
