@@ -1,6 +1,7 @@
 'use strict';
 
 import {someChar} from "./storage";
+import splittermond from "./splittermond"
 import React from 'react';
 import * as R from 'ramda';
 

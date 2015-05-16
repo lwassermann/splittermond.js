@@ -1,7 +1,8 @@
 'use strict';
 
 var someChar = {
-  name: 'Charley'
+  name: 'Charley',
+  abilities: [],
 };
 
 export {someChar};
