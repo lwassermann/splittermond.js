@@ -2,9 +2,10 @@
   "name": "splittermond.js",
   "main": "src/main.jsx",
   "version": "0.0.1",
+  "private": true,
   "dependencies": {
     "react": "*",
-    "jquery": "*",
+    "d3": "*",
     "ramda": "*"
   },
   "devDependencies": {
