@@ -4,4 +4,4 @@ var someChar = {
   name: 'Charley'
 };
 
-exports.someChar = someChar;
+export {someChar};
