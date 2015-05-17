@@ -3,9 +3,9 @@ import React from 'react';
 
 const ScrubbableNumber = React.createClass({
   propTypes: {
-    delta: React.propTypes.func,
-    onChange: React.propTypes.func,
-    value: React.propTypes.number,
+    delta: React.PropTypes.func,
+    onChange: React.PropTypes.func,
+    value: React.PropTypes.number,
   },
   getDefaultProps() {
     return {
@@ -53,18 +53,20 @@ const ScrubbableNumber = React.createClass({
       <div className="scrubbable"
           onChange={this.handleChange}
           onMouseDown={this.handleMouseDown}>
-        {this.props.value}
+        <input value={this.props.value} onChange={this.handleChange} />
         {this.state.scrubbing
-          ? <div
+          && <div
               className="overlay scrubbing"
               onMouseMove={this.handleMouseMove}
-              onMouseUp={this.handleMouseUp}></div>
-          : null}
+              onMouseUp={this.handleMouseUp}></div>}
       </div>
     );
   }
 });
-const interactionElements = {number: ScrubbableNumber};
+const interactionElements = {
+  number: ScrubbableNumber,
+  text: TextInput
+};
 
 export default interactionElements;
-export {ScrubbableNumber};
+export {ScrubbableNumber, TextInput};

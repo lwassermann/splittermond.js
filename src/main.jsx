@@ -5,31 +5,14 @@ import * as R from 'ramda';
 
 import Abilities from './abilities.jsx';
 import Attributes from './attributes.jsx';
+import {TextInput} from './interaction-elements.jsx';
 import {someChar} from './storage';
 
 window.React = React;
 
-const TextInput = React.createClass({
-  propTypes: {
-    content: React.propTypes.string,
-    handleChange: React.propTypes.func,
-  },
-  handleChange(evt) {
-    this.props.handleChange(evt.target.value);
-  },
-
-  render() {
-    return (<input
-      className="textInput"
-      type="text"
-      value={this.props.content}
-      onChange={this.handleChange} />);
-  }
-});
-
 const CharakterDokument = React.createClass({
   propTypes: {
-    initialModel: React.propTypes.object,
+    initialModel: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -61,8 +44,8 @@ const CharakterDokument = React.createClass({
 
 const Name = React.createClass({
   propTypes: {
-    alterPath: React.propTypes.func,
-    model: React.propTypes.object,
+    alterPath: React.PropTypes.func,
+    model: React.PropTypes.object,
   },
   renameTo(name) {
     this.props.alterPath(['name'], name);
@@ -71,7 +54,7 @@ const Name = React.createClass({
   render() {
     return (
       <label className="char-name">
-      Name: <TextInput content={this.props.model.name} handleChange={this.renameTo} />
+      Name: <TextInput content={this.props.model.name} onChange={this.renameTo} />
       </label>
     );
   }

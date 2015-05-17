@@ -7,8 +7,8 @@ import splittermond from './splittermond';
 
 const Abilities = React.createClass({
   propTypes: {
-    alterPath: React.propTypes.func,
-    model: React.propTypes.object,
+    alterPath: React.PropTypes.func,
+    model: React.PropTypes.object,
   },
 
   changeAbility(ability, newValue) {
@@ -39,10 +39,10 @@ const Abilities = React.createClass({
 
 const Ability = React.createClass({
   propTypes: {
-    attributes: React.propTypes.array,
-    handleChange: React.propTypes.func,
-    model: React.propTypes.object,
-    name: React.propTypes.string,
+    attributes: React.PropTypes.array,
+    handleChange: React.PropTypes.func,
+    model: React.PropTypes.object,
+    name: React.PropTypes.string,
   },
 
   aggregated() {
