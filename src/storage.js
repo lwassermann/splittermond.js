@@ -5,14 +5,14 @@ import R from 'ramda';
 var defaultChar = {
   name: '',
   attributes: {
-    AUS: 0,
-    BEW: 0,
-    INT: 0,
-    KON: 0,
-    MYS: 0,
-    STR: 0,
-    VER: 0,
-    WIL: 0,
+    aus: 0,
+    bew: 0,
+    int: 0,
+    kon: 0,
+    mys: 0,
+    str: 0,
+    ver: 0,
+    wil: 0,
   },
   abilities: {},
 };
@@ -20,14 +20,14 @@ var defaultChar = {
 var someChar = R.merge(defaultChar, {
   name: 'Charley',
   attributes: {
-    AUS: 1,
-    BEW: 2,
-    INT: 1,
-    KON: 2,
-    MYS: 1,
-    STR: 2,
-    VER: 3,
-    WIL: 4
+    aus: 1,
+    bew: 2,
+    int: 1,
+    kon: 2,
+    mys: 1,
+    str: 2,
+    ver: 3,
+    wil: 4
   },
 });
 
