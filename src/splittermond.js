@@ -9,24 +9,24 @@ var n = {};
 
 // jshint maxlen:false
 var splittermond = {
-    attributes: ['AUS', 'BEW', 'INT', 'KON', 'MYS', 'STR', 'VER', 'WIL'],
+    attributes: ['aus', 'bew', 'int', 'kon', 'mys', 'str', 'ver', 'wil'],
     derivedAttributes: {
-        GK: function(char) {
-            return char.race.GK; },
-        GSW: function(char) {
-            return char.derivedAttributes.GK + char.attributes.BEW; },
-        INI: function(char) {
-            return 10 - char.attributes.INT; },
-        LP: function(char) {
-            return char.derivedAttributes.GK + char.attributes.KON; },
-        FO: function(char) {
-            return 2 * (char.attributes.MYS + char.attributes.WIL); },
-        VTD: function(char) {
-            return 12 + char.attributes.BEW + char.attributes.STR + char.race.VTDmod; },
-        GW: function(char) {
-            return 12 + char.attributes.VER + char.attributes.WIL; },
-        KW: function(char) {
-            return 12 + char.attributes.KON + char.attributes.WIL; }},
+        gk: function(char) {
+            return char.race.gk; },
+        gsw: function(char) {
+            return char.derivedAttributes.gk + char.attributes.bew; },
+        ini: function(char) {
+            return 10 - char.attributes.int; },
+        lp: function(char) {
+            return char.derivedAttributes.gk + char.attributes.kon; },
+        fo: function(char) {
+            return 2 * (char.attributes.mys + char.attributes.wil); },
+        vtd: function(char) {
+            return 12 + char.attributes.bew + char.attributes.str + char.race.vtdMod; },
+        gw: function(char) {
+            return 12 + char.attributes.ver + char.attributes.wil; },
+        kw: function(char) {
+            return 12 + char.attributes.kon + char.attributes.wil; }},
 
     races: ['Mensch', 'Alb', 'Zwerg', 'Gnom', 'Varg'],
     strengths: [{name: 'Attraktivität', cost: 1, start: true},

@@ -1,7 +1,7 @@
 'use strict';
 
 import {someChar} from "./storage";
-import splittermond from "./splittermond"
+import splittermond from "./splittermond";
 import React from 'react';
 import * as R from 'ramda';
 
@@ -27,27 +27,15 @@ const CharakterDokument = React.createClass({
 
   render() {
     return (
-      <div>
-        <Name model={this.state.model} alterPath={this.changeCharacter} />
+      <div className="char-document">
+        <div className="char-background">
+          <Name model={this.state.model} alterPath={this.changeCharacter} />
+        </div>
+        <div className="char-abilities">
+          <Abilities model={this.state.model} alterPath={this.changeCharacter} />
+        </div>
       </div>
       );
-  }
-});
-
-const Ability = React.createClass({
-  render() {
-    return (
-      <div class='ability'>
-        <span class='ability-name'>{this.props.name}</span>
-        <span class='ability-aggregated'>
-          {this.props.att1 + this.props.att2 + this.props.points + this.props.mod}
-        </span>
-        <span class='ability-points'></span>
-        <span class='ability-att1'></span>
-        <span class='ability-att2'></span>
-        <span class='ability-mod'></span>
-      </div>
-    );
   }
 });
 
@@ -61,6 +49,47 @@ const Name = React.createClass({
       <label className="char-name">
       Name: <TextInput content={this.props.model.name} handleChange={this.renameTo} />
       </label>
+    );
+  }
+});
+
+const Abilities = React.createClass({
+  changeAbility(ability, delta) {
+    this.props.alterPath(['abilities', ability], (this.props.model[ability] || 0) + delta);
+  },
+
+  render() {
+    const abilities = R.map(ability => {
+      return <Ability
+        {...ability}
+        key={ability.name}
+        handleChange={this.changeAbility}
+        char={this.props.model} />;
+    }, splittermond.abilities);
+    return (
+      <table className='ability'>
+        {abilities}
+      </table>
+    );
+  }
+});
+
+const Ability = React.createClass({
+  aggregated() {
+    return this.props.char.attributes[this.props.attributes[0]]
+      + this.props.char.attributes[this.props.attributes[1]]
+      + (this.props.char.abilities[this.props.name] || 0)
+  },
+  render() {
+    return (
+      <tr className='ability'>
+        <td className='ability-name'>{this.props.name}</td>
+        <td className='ability-aggregated'>{this.aggregated()}</td>
+        <td className='ability-points'>{this.props.char.abilities[this.props.name] || 0}</td>
+        <td className='ability-attributes' placeholder={this.props.attributes[0]}>{this.props.char.attributes[this.props.attributes[0]]}</td>
+        <td className='ability-attributes' placeholder={this.props.attributes[1]}>{this.props.char.attributes[this.props.attributes[1]]}</td>
+        <td className='ability-mod'>?</td>
+      </tr>
     );
   }
 });
