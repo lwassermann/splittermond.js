@@ -9,7 +9,15 @@ var n = {};
 
 // jshint maxlen:false
 var splittermond = {
-    attributes: ['aus', 'bew', 'int', 'kon', 'mys', 'str', 'ver', 'wil'],
+    attributes: [
+      {shorthand: 'aus', name: 'Ausdauer'},
+      {shorthand: 'bew', name: 'Beweglichkeit'},
+      {shorthand: 'int', name: 'Intuition'},
+      {shorthand: 'kon', name: 'Konstitution'},
+      {shorthand: 'mys', name: 'Mystik'},
+      {shorthand: 'str', name: 'Stärke'},
+      {shorthand: 'ver', name: 'Verstand'},
+      {shorthand: 'wil', name: 'Willenskraft'}],
     derivedAttributes: {
         gk: function(char) {
             return char.race.gk; },
@@ -22,7 +30,7 @@ var splittermond = {
         fo: function(char) {
             return 2 * (char.attributes.mys + char.attributes.wil); },
         vtd: function(char) {
-            return 12 + char.attributes.bew + char.attributes.str + char.race.vtdMod; },
+            return 12 + char.attributes.bew + char.attributes.str; },
         gw: function(char) {
             return 12 + char.attributes.ver + char.attributes.wil; },
         kw: function(char) {

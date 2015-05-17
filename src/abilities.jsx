@@ -28,8 +28,8 @@ const Abilities = React.createClass({
 
 const Ability = React.createClass({
   aggregated() {
-    return this.props.char.attributes[this.props.attributes[0]]
-      + this.props.char.attributes[this.props.attributes[1]]
+    return this.props.char.attributes[this.props.attributes[0]].value
+      + this.props.char.attributes[this.props.attributes[1]].value
       + (this.props.char.abilities[this.props.name] || 0);
   },
   dec() { this.props.handleChange(this.props.name, -1); },
@@ -38,17 +38,17 @@ const Ability = React.createClass({
     return (
       <tr className='ability'>
         <td className='ability-name'>{this.props.name}</td>
-        <td className='number ability-aggregated'>{this.aggregated()}</td>
+        <td className='number aggregate ability-aggregated'>{this.aggregated()}</td>
         <td className='number ability-points'>
           <button className="btn increment" onClick={this.inc}></button>
           {this.props.char.abilities[this.props.name] || 0}
           <button className="btn decrement" onClick={this.dec}></button>
         </td>
         <td className='number ability-attributes'>
-          <span className='placeholder shorthand attribute-name'>{this.props.attributes[0]}</span>
+          <span className='placeholder shorthand attribute-name'>{this.props.attributes[0].value}</span>
           {this.props.char.attributes[this.props.attributes[0]]}</td>
         <td className='number ability-attributes'>
-          <span className='placeholder shorthand attribute-name'>{this.props.attributes[1]}</span>
+          <span className='placeholder shorthand attribute-name'>{this.props.attributes[1].value}</span>
           {this.props.char.attributes[this.props.attributes[1]]}</td>
         <td className='number ability-mod'>?</td>
       </tr>
@@ -56,4 +56,5 @@ const Ability = React.createClass({
   }
 });
 
+export default Abilities;
 export {Ability, Abilities};

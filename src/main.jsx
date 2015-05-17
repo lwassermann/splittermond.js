@@ -5,8 +5,10 @@ import * as R from 'ramda';
 
 import splittermond from './splittermond';
 import Abilities from './abilities.jsx';
+import Attributes from './attributes.jsx';
 import {someChar} from './storage';
 
+window.React = React;
 
 const TextInput = React.createClass({
   handleChange(evt) {
@@ -23,7 +25,7 @@ const CharakterDokument = React.createClass({
     return {model: this.props.initialModel};
   },
 
-  changeCharacter(path, value) {
+  changePathOfChar(path, value) {
     this.setState({model: R.assocPath(path, value, this.state.model)});
   },
 
@@ -31,10 +33,15 @@ const CharakterDokument = React.createClass({
     return (
       <div className="char-document">
         <div className="char-background">
-          <Name model={this.state.model} alterPath={this.changeCharacter} />
+          <Name model={this.state.model} alterPath={this.changePathOfChar} />
+        </div>
+        <div className="char-attributes">
+          <Attributes model={this.state.model} alterPath={this.changePathOfChar}/>
+        </div>
+        <div className="char-derived-attributes">
         </div>
         <div className="char-abilities">
-          <Abilities model={this.state.model} alterPath={this.changeCharacter} />
+          <Abilities model={this.state.model} alterPath={this.changePathOfChar} />
         </div>
       </div>
       );
