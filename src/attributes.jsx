@@ -7,12 +7,11 @@ import splittermond from './splittermond';
 
 const Attributes = React.createClass({
   propTypes: {
-    alterPath: React.PropTypes.func,
     model: React.PropTypes.object
   },
 
   changeAttribute(name, type, newValue) {
-    this.props.alterPath(['attributes', name, type], newValue);
+    this.props.model.assocPath(['attributes', name, type], newValue);
   },
 
   render() {

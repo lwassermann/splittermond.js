@@ -12,30 +12,27 @@ window.React = React;
 
 const CharakterDokument = React.createClass({
   propTypes: {
-    initialModel: React.PropTypes.object,
+    model: React.PropTypes.object,
   },
-
   getInitialState() {
-    return {model: this.props.initialModel};
-  },
-
-  changePathOfChar(path, value) {
-    this.setState({model: R.assocPath(path, value, this.state.model)});
+    return {model: R.assoc('assocPath', (path, value) => {
+      this.setState({model: R.assocPath(path, value, this.state.model)});
+    }, this.props.model)};
   },
 
   render() {
     return (
       <div className="char-document">
         <div className="char-background">
-          <Name model={this.state.model} alterPath={this.changePathOfChar} />
+          <Name model={this.state.model} />
         </div>
         <div className="char-attributes">
-          <Attributes model={this.state.model} alterPath={this.changePathOfChar}/>
+          <Attributes model={this.state.model} />
         </div>
         <div className="char-derived-attributes">
         </div>
         <div className="char-abilities">
-          <Abilities model={this.state.model} alterPath={this.changePathOfChar} />
+          <Abilities model={this.state.model} />
         </div>
       </div>
       );
@@ -44,11 +41,10 @@ const CharakterDokument = React.createClass({
 
 const Name = React.createClass({
   propTypes: {
-    alterPath: React.PropTypes.func,
     model: React.PropTypes.object,
   },
   renameTo(name) {
-    this.props.alterPath(['name'], name);
+    this.props.model.assocPath(['name'], name);
   },
 
   render() {
@@ -61,6 +57,6 @@ const Name = React.createClass({
 });
 
 React.render(
-  <CharakterDokument initialModel={someChar} />,
+  <CharakterDokument model={someChar} />,
   document.getElementById('content')
 );
