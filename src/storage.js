@@ -2,7 +2,7 @@
 
 import R from 'ramda';
 
-var defaultChar = {
+const defaultChar = {
   name: '',
   attributes: {
     aus: {value: 0, start: 0},
@@ -17,7 +17,7 @@ var defaultChar = {
   abilities: {},
 };
 
-var someChar = R.merge(defaultChar, {
+const someChar = R.merge(defaultChar, {
   name: 'Charley',
   attributes: {
     aus: {value: 1, start: 1},

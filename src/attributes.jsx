@@ -6,6 +6,11 @@ import interactionElements from './interaction-elements.jsx';
 import splittermond from './splittermond';
 
 const Attributes = React.createClass({
+  propTypes: {
+    alterPath: React.propTypes.func,
+    model: React.propTypes.object
+  },
+
   changeAttribute(name, type, newValue) {
     this.props.alterPath(['attributes', name, type], newValue);
   },
@@ -31,7 +36,7 @@ const Attributes = React.createClass({
       );
     }, splittermond.attributes);
     return (
-      <table className='attributes'>
+      <table className="attributes">
         <thead><tr><th>Name</th><th></th><th>Start</th><th>Wert</th><th>Mod</th></tr></thead>
         <tbody>{attributes}</tbody>
       </table>

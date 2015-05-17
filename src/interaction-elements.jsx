@@ -1,21 +1,38 @@
 import React from 'react';
-import * as R from 'ramda';
+// import * as R from 'ramda';
 
 const ScrubbableNumber = React.createClass({
+  propTypes: {
+    delta: React.propTypes.func,
+    onChange: React.propTypes.func,
+    value: React.propTypes.number,
+  },
+  getDefaultProps() {
+    return {
+      value: 0,
+      onChange: function() {},
+      delta: function(p1, p2) { return Math.round((p2.x - p1.x) / 50); }
+    };
+  },
+
   getInitialState() {
-    return {scrubbing: false, x: 0, y: 0};
+    return {scrubbing: false};
   },
 
   handleMouseDown(evt) {
     if (evt.button === 0) {
-      this.setState({scrubbing: true, x: evt.screenX, y: evt.screenY, initialValue: this.props.value});
+      this.setState({
+        scrubbing: true,
+        p: {x: evt.screenX, y: evt.screenY},
+        initialValue: this.props.value
+      });
 
       evt.preventDefault();
       evt.stopPropagation();
     }
   },
   handleMouseMove(evt) {
-    var delta = this.delta(this.state, {x: evt.screenX, y: evt.screenY});
+    const delta = this.props.delta(this.state.p, {x: evt.screenX, y: evt.screenY});
     this.props.onChange(this.state.initialValue + delta);
 
     evt.preventDefault();
@@ -27,26 +44,21 @@ const ScrubbableNumber = React.createClass({
     evt.preventDefault();
     evt.stopPropagation();
   },
-  handleChange(evt) { return this.props.onChange(evt.target.value); },
-  delta: function({x: x1, y: y1}, {x: x2, y: y2}) {
-    var dx = x2 - x1;
-    var dy = y2 - y1;
-    return Math.round(dx / 50);
+  handleChange(evt) {
+    return this.props.onChange(evt.target.value);
   },
 
   render() {
     return (
-      <div className="scrubbable">
-        <input
-          type="number"
-          value={this.props.value}
+      <div className="scrubbable"
           onChange={this.handleChange}
-          onMouseDown={this.handleMouseDown} />
+          onMouseDown={this.handleMouseDown}>
+        {this.props.value}
         {this.state.scrubbing
           ? <div
-            className="overlay scrubbing"
-            onMouseMove={this.handleMouseMove}
-            onMouseUp={this.handleMouseUp}></div>
+              className="overlay scrubbing"
+              onMouseMove={this.handleMouseMove}
+              onMouseUp={this.handleMouseUp}></div>
           : null}
       </div>
     );

@@ -5,10 +5,10 @@
   owns the copyrights (as of Mai 2015).
 /*/
 
-var n = {};
+const n = {};
 
-// jshint maxlen:false
-var splittermond = {
+/* eslint-disable max-len, no-multi-spaces */
+const splittermond = {
     attributes: [
       {shorthand: 'aus', name: 'Ausdauer'},
       {shorthand: 'bew', name: 'Beweglichkeit'},
@@ -19,23 +19,31 @@ var splittermond = {
       {shorthand: 'ver', name: 'Verstand'},
       {shorthand: 'wil', name: 'Willenskraft'}],
     derivedAttributes: {
-        gk: function(char) {
-            return char.race.gk; },
-        gsw: function(char) {
-            return char.derivedAttributes.gk + char.attributes.bew; },
-        ini: function(char) {
-            return 10 - char.attributes.int; },
-        lp: function(char) {
-            return char.derivedAttributes.gk + char.attributes.kon; },
-        fo: function(char) {
-            return 2 * (char.attributes.mys + char.attributes.wil); },
-        vtd: function(char) {
-            return 12 + char.attributes.bew + char.attributes.str; },
-        gw: function(char) {
-            return 12 + char.attributes.ver + char.attributes.wil; },
-        kw: function(char) {
-            return 12 + char.attributes.kon + char.attributes.wil; }},
-
+      gk(char) {
+        return char.race.gk;
+      },
+      gsw(char) {
+        return char.derivedAttributes.gk + char.attributes.bew;
+      },
+      ini(char) {
+        return 10 - char.attributes.int;
+      },
+      lp(char) {
+        return char.derivedAttributes.gk + char.attributes.kon;
+      },
+      fo(char) {
+        return 2 * (char.attributes.mys + char.attributes.wil);
+      },
+      vtd(char) {
+        return 12 + char.attributes.bew + char.attributes.str;
+      },
+      gw(char) {
+        return 12 + char.attributes.ver + char.attributes.wil;
+      },
+      kw(char) {
+        return 12 + char.attributes.kon + char.attributes.wil;
+      },
+    },
     races: [
       {name: 'Alb',    gk: 5, strengths: ['Attraktivität', 'Scharfes Gehör', 'Dämmersicht']},
       {name: 'Gnom',   gk: 3, strengths: ['Feensinn', 'Hoher Geistiger Widerstand', 'Flink']},
@@ -297,7 +305,7 @@ var splittermond = {
         {name: 'Klingenwaffen'},
         {name: 'Stangenwaffen'},
         {name: 'Schusswaffen'},
-        {name: 'Wurfwaffen'}, ],
+        {name: 'Wurfwaffen'}],
     generalWeaponsMasteries: [[
         {name: 'Abdrängen', isManoeuvre: true},
         {name: 'Improvisation'}, {name: 'Kampf mit zwei Waffen'}, {name: 'Rückzugsgefecht'},
@@ -438,20 +446,20 @@ var splittermond = {
       [{name: 'Großmeister'}]],
 
     startMoney: function(char) {
-        switch(char.resources['Vermögen']) {
-            case -1: return [0, 1, 0];
-            case  0: return [0, 3, 0];
-            case  1: return [0, 5, 0];
-            case  2: return [0,20, 0];
-            case  3: return [0,40, 0];
-            case  4: return [0,65, 0];
-            case  5: return [1, 0, 0];
-            case  6: return [1,50, 0];
-            default: return [0, 0, 0];
-        }
+      switch (char.resources['Vermögen']) {
+        case -1: return [0,  1, 0];
+        case  0: return [0,  3, 0];
+        case  1: return [0,  5, 0];
+        case  2: return [0, 20, 0];
+        case  3: return [0, 40, 0];
+        case  4: return [0, 65, 0];
+        case  5: return [1,  0, 0];
+        case  6: return [1, 50, 0];
+        default: return [0,  0, 0];
+      }
     },
 };
-// jshint maxlen:107
+/* eslint-enable max-len, no-multi-space */
 
 export default splittermond;
 const abilities = splittermond.abilities;

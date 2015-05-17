@@ -3,7 +3,6 @@
 import React from 'react';
 import * as R from 'ramda';
 
-import splittermond from './splittermond';
 import Abilities from './abilities.jsx';
 import Attributes from './attributes.jsx';
 import {someChar} from './storage';
@@ -11,16 +10,28 @@ import {someChar} from './storage';
 window.React = React;
 
 const TextInput = React.createClass({
+  propTypes: {
+    content: React.propTypes.string,
+    handleChange: React.propTypes.func,
+  },
   handleChange(evt) {
     this.props.handleChange(evt.target.value);
   },
 
   render() {
-    return (<input className="textInput" type="text" value={this.props.content} onChange={this.handleChange} />);
+    return (<input
+      className="textInput"
+      type="text"
+      value={this.props.content}
+      onChange={this.handleChange} />);
   }
 });
 
 const CharakterDokument = React.createClass({
+  propTypes: {
+    initialModel: React.propTypes.object,
+  },
+
   getInitialState() {
     return {model: this.props.initialModel};
   },
@@ -49,6 +60,10 @@ const CharakterDokument = React.createClass({
 });
 
 const Name = React.createClass({
+  propTypes: {
+    alterPath: React.propTypes.func,
+    model: React.propTypes.object,
+  },
   renameTo(name) {
     this.props.alterPath(['name'], name);
   },
@@ -63,6 +78,6 @@ const Name = React.createClass({
 });
 
 React.render(
-  <CharakterDokument initialModel={someChar}></CharakterDokument>,
+  <CharakterDokument initialModel={someChar} />,
   document.getElementById('content')
 );
