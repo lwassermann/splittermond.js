@@ -1,0 +1,38 @@
+.number {
+  padding: 2px 10px;
+}
+
+.placeholder {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+
+  color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 90%;
+}
+
+.shorthand {
+    text-transform: uppercase;
+}
+
+.increment:before {
+  content: '+'
+}
+.decrement:before {
+  content: '-'
+}
+
+.abilities {
+  border-spacing: 4px;
+}
+
+.ability-attributes {
+    position: relative;
+}
+
+.ability-aggregated {
+  border: 2px solid lightBlue;
+}
+
