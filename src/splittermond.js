@@ -36,7 +36,12 @@ var splittermond = {
         kw: function(char) {
             return 12 + char.attributes.kon + char.attributes.wil; }},
 
-    races: ['Mensch', 'Alb', 'Zwerg', 'Gnom', 'Varg'],
+    races: [
+      {name: 'Alb',    gk: 5, strengths: ['Attraktivität', 'Scharfes Gehör', 'Dämmersicht']},
+      {name: 'Gnom',   gk: 3, strengths: ['Feensinn', 'Hoher Geistiger Widerstand', 'Flink']},
+      {name: 'Mensch', gk: 5, strengths: ['Zusätzliche Splitterpunkte']},
+      {name: 'Varg',   gk: 6, strengths: ['Natürlicher Rüstungsschutz', 'Ausdauernd', 'Natürliche Waffe']},
+      {name: 'Zwerg',  gk: 4, strengths: ['Giftresistenz', 'Robust', 'Orientierungssinn']}],
     strengths: [{name: 'Attraktivität', cost: 1, start: true},
       {name: 'Ausdauernd', cost: 1},
       {name: 'Bastler', cost: 1},
