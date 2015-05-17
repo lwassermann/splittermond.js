@@ -45,11 +45,11 @@ const Ability = React.createClass({
           <button className="btn decrement" onClick={this.dec}></button>
         </td>
         <td className='number ability-attributes'>
-          <span className='placeholder shorthand attribute-name'>{this.props.attributes[0].value}</span>
-          {this.props.char.attributes[this.props.attributes[0]]}</td>
+          <span className='placeholder shorthand attribute-name'>{this.props.attributes[0]}</span>
+          {this.props.char.attributes[this.props.attributes[0]].value}</td>
         <td className='number ability-attributes'>
-          <span className='placeholder shorthand attribute-name'>{this.props.attributes[1].value}</span>
-          {this.props.char.attributes[this.props.attributes[1]]}</td>
+          <span className='placeholder shorthand attribute-name'>{this.props.attributes[1]}</span>
+          {this.props.char.attributes[this.props.attributes[1]].value}</td>
         <td className='number ability-mod'>?</td>
       </tr>
     );
