@@ -1,12 +1,14 @@
 import React from 'react';
 import * as R from 'ramda';
 
+import interactionElements from './interaction-elements.jsx';
+
 import splittermond from './splittermond';
 
 const Abilities = React.createClass({
-  changeAbility(ability, delta) {
+  changeAbility(ability, newValue) {
     var path = ['abilities', ability];
-    this.props.alterPath(path, (R.path(path, this.props.model) || 0) + delta);
+    this.props.alterPath(path, newValue);
   },
 
   render() {
@@ -32,17 +34,16 @@ const Ability = React.createClass({
       + this.props.char.attributes[this.props.attributes[1]].value
       + (this.props.char.abilities[this.props.name] || 0);
   },
-  dec() { this.props.handleChange(this.props.name, -1); },
-  inc() { this.props.handleChange(this.props.name, +1); },
+  handleChange(newValue) { this.props.handleChange(this.props.name, newValue)},
   render() {
     return (
       <tr className='ability'>
         <td className='ability-name'>{this.props.name}</td>
         <td className='number aggregate ability-aggregated'>{this.aggregated()}</td>
         <td className='number ability-points'>
-          <button className="btn increment" onClick={this.inc}></button>
-          {this.props.char.abilities[this.props.name] || 0}
-          <button className="btn decrement" onClick={this.dec}></button>
+          <interactionElements.number
+            value={this.props.char.abilities[this.props.name] || 0}
+            onChange={this.handleChange} />
         </td>
         <td className='number ability-attributes'>
           <span className='placeholder shorthand attribute-name'>{this.props.attributes[0]}</span>

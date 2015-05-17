@@ -1,12 +1,13 @@
 import React from 'react';
 import * as R from 'ramda';
 
+import interactionElements from './interaction-elements.jsx';
+
 import splittermond from './splittermond';
 
 const Attributes = React.createClass({
-  changeAttribute(name, newValue) {
-    var path = ['attributes', name];
-    this.props.alterPath(path, newValue);
+  changeAttribute(name, type, newValue) {
+    this.props.alterPath(['attributes', name, type], newValue);
   },
 
   render() {
@@ -15,8 +16,16 @@ const Attributes = React.createClass({
         <tr className="attribute" key={attribute.name}>
           <td className="attribute-name">{attribute.name}</td>
           <td className="shorthand attribute-shorthand">{attribute.shorthand}</td>
-          <td className="number attribute-start">{this.props.model.attributes[attribute.shorthand].start}</td>
-          <td className="number aggregate attribute-value">{this.props.model.attributes[attribute.shorthand].value}</td>
+          <td className="number attribute-start">
+            <interactionElements.number
+              value={this.props.model.attributes[attribute.shorthand].start}
+              onChange={this.changeAttribute.bind(this, attribute.shorthand, 'start')} />
+          </td>
+          <td className="number aggregate attribute-value">
+            <interactionElements.number
+              value={this.props.model.attributes[attribute.shorthand].value}
+              onChange={this.changeAttribute.bind(this, attribute.shorthand, 'value')} />
+          </td>
           <td className="number attribtue-mod">?</td>
         </tr>
       );
