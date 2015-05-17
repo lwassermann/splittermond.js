@@ -45,7 +45,6 @@ const ScrubbableNumber = React.createClass({
         initialValue: this.props.value
       });
 
-      evt.preventDefault();
       evt.stopPropagation();
     }
   },
@@ -63,7 +62,7 @@ const ScrubbableNumber = React.createClass({
     evt.stopPropagation();
   },
   handleChange(evt) {
-    return this.props.onChange(evt.target.value);
+    return this.props.onChange(+evt.target.value);
   },
 
   render() {
@@ -71,7 +70,8 @@ const ScrubbableNumber = React.createClass({
       <div className="scrubbable"
           onChange={this.handleChange}
           onMouseDown={this.handleMouseDown}>
-        <input value={this.props.value} onChange={this.handleChange} />
+        <input className="scrubbable-input" type="text" size="2"
+          value={this.props.value} onChange={this.handleChange} />
         {this.state.scrubbing
           && <div
               className="overlay scrubbing"
