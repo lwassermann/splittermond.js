@@ -1,6 +1,24 @@
 import React from 'react';
 // import * as R from 'ramda';
 
+const TextInput = React.createClass({
+  propTypes: {
+    content: React.PropTypes.string,
+    onChange: React.PropTypes.func,
+  },
+  handleChange(evt) {
+    this.props.onChange(evt.target.value);
+  },
+
+  render() {
+    return (<input
+      className="textInput"
+      type="text"
+      value={this.props.content}
+      onChange={this.handleChange} />);
+  }
+});
+
 const ScrubbableNumber = React.createClass({
   propTypes: {
     delta: React.PropTypes.func,
