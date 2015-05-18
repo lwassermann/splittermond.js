@@ -18,6 +18,10 @@
     height: 100%;
 }
 
+.hide {
+  visibility: hidden;
+}
+
 .number {
   padding: 2px 10px;
   text-align: center;

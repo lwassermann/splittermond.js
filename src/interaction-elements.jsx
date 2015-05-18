@@ -72,11 +72,10 @@ const ScrubbableNumber = React.createClass({
           onMouseDown={this.handleMouseDown}>
         <input className="scrubbable-input" type="text" size="2"
           value={this.props.value} onChange={this.handleChange} />
-        {this.state.scrubbing
-          && <div
-              className="overlay scrubbing"
-              onMouseMove={this.handleMouseMove}
-              onMouseUp={this.handleMouseUp}></div>}
+          <div
+            className={'overlay scrubbing ' + (this.state.scrubbing ? 'active' : 'hide')}
+            onMouseMove={this.handleMouseMove}
+            onMouseUp={this.handleMouseUp}></div>
       </div>
     );
   }
