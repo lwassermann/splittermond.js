@@ -15,12 +15,21 @@ const Attributes = React.createClass({
     this.props.model.assocPath(['attributes', name, type], newValue);
   },
 
+  handleHoverStart(attribute) {
+    this.props.highlight.highlight(attribute.abbreviation);
+  },
+  handleHoverEnd(attribute) {
+    this.props.highlight.downlight(attribute.abbreviation);
+  },
+
   render() {
     const attributes = R.map(attribute => {
       const shouldHighlight = R.contains(attribute.abbreviation, this.props.highlight);
       const highlight = shouldHighlight ? ' highlight' : '';
       return (
-        <tr className="attribute" key={attribute.name}>
+        <tr className="attribute" key={attribute.name}
+            onMouseEnter={this.handleHoverStart.bind(this, attribute)}
+            onMouseLeave={this.handleHoverEnd.bind(this, attribute)}>
           <td className="attribute-name">{attribute.name}</td>
           <td className="shorthand attribute-abbreviation">{attribute.abbreviation}</td>
           <td className="number attribute-start">

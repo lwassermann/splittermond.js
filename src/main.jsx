@@ -15,12 +15,18 @@ const CharakterDokument = React.createClass({
     model: React.PropTypes.object,
   },
   getInitialState() {
-    let highlight = [];
-    highlight.push = (a) => this.setState({highlight: this.state.highlight.concat(a)});
-    highlight.pop = () => this.setState({highlight: this.state.highlight.slice(0, -1)});
+    const caffeinate = (array) => {
+      array.highlight = (arg) => this.setState({highlight:
+        caffeinate(this.state.highlight.concat(arg).slice(-2))});
+      array.downlight = (arg) => this.setState({highlight:
+        caffeinate(arg
+                    ? R.reject(R.eq(arg), this.state.highlight)
+                    : this.state.highlight.slice(0, -1))});
+      return array;
+    };
     return {model: R.assoc('assocPath', (path, value) => {
       this.setState({model: R.assocPath(path, value, this.state.model)});
-    }, this.props.model), highlight};
+    }, this.props.model), highlight: caffeinate([])};
   },
 
   render() {
