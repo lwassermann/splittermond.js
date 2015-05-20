@@ -10,14 +10,14 @@ const n = {};
 /* eslint-disable max-len, no-multi-spaces */
 const splittermond = {
     attributes: [
-      {shorthand: 'aus', name: 'Ausdauer'},
-      {shorthand: 'bew', name: 'Beweglichkeit'},
-      {shorthand: 'int', name: 'Intuition'},
-      {shorthand: 'kon', name: 'Konstitution'},
-      {shorthand: 'mys', name: 'Mystik'},
-      {shorthand: 'str', name: 'Stärke'},
-      {shorthand: 'ver', name: 'Verstand'},
-      {shorthand: 'wil', name: 'Willenskraft'}],
+      {abbreviation: 'aus', name: 'Ausdauer'},
+      {abbreviation: 'bew', name: 'Beweglichkeit'},
+      {abbreviation: 'int', name: 'Intuition'},
+      {abbreviation: 'kon', name: 'Konstitution'},
+      {abbreviation: 'mys', name: 'Mystik'},
+      {abbreviation: 'str', name: 'Stärke'},
+      {abbreviation: 'ver', name: 'Verstand'},
+      {abbreviation: 'wil', name: 'Willenskraft'}],
     derivedAttributes: {
       gk(char) {
         return char.race.gk;

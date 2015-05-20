@@ -19,16 +19,16 @@ const Attributes = React.createClass({
       return (
         <tr className="attribute" key={attribute.name}>
           <td className="attribute-name">{attribute.name}</td>
-          <td className="shorthand attribute-shorthand">{attribute.shorthand}</td>
+          <td className="shorthand attribute-abbreviation">{attribute.abbreviation}</td>
           <td className="number attribute-start">
             <interactionElements.number
-              value={this.props.model.attributes[attribute.shorthand].start}
-              onChange={this.changeAttribute.bind(this, attribute.shorthand, 'start')} />
+              value={this.props.model.attributes[attribute.abbreviation].start}
+              onChange={this.changeAttribute.bind(this, attribute.abbreviation, 'start')} />
           </td>
           <td className="number aggregate attribute-value">
             <interactionElements.number
-              value={this.props.model.attributes[attribute.shorthand].value}
-              onChange={this.changeAttribute.bind(this, attribute.shorthand, 'value')} />
+              value={this.props.model.attributes[attribute.abbreviation].value}
+              onChange={this.changeAttribute.bind(this, attribute.abbreviation, 'value')} />
           </td>
           <td className="number attribtue-mod">?</td>
         </tr>

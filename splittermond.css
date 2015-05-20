@@ -35,13 +35,6 @@
     text-transform: uppercase;
 }
 
-.increment:before {
-  content: '+'
-}
-.decrement:before {
-  content: '-'
-}
-
 .abilities {
   border-spacing: 4px;
 }
