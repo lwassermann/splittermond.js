@@ -8,6 +8,7 @@ import splittermond from './splittermond';
 const Abilities = React.createClass({
   propTypes: {
     model: React.PropTypes.object,
+    highlight: React.PropTypes.array,
   },
 
   changeAbility(ability, newValue) {
@@ -21,12 +22,13 @@ const Abilities = React.createClass({
           {...ability}
           key={ability.name}
           handleChange={this.changeAbility}
-          model={this.props.model} />);
+          model={this.props.model}
+          highlight={this.props.highlight} />);
     }, splittermond.abilities);
     return (
       <table className="abilities">
         <thead>
-          <tr><th>Name</th><th>∑</th><th>Punkte</th><th>Att 1</th><th>Att 2</th><th>Mod</th></tr>
+          <tr><th>Name</th><th>∑</th><th>Punkte</th><th>Mod</th></tr>
         </thead>
         <tbody>
           {abilities}
@@ -42,6 +44,7 @@ const Ability = React.createClass({
     handleChange: React.PropTypes.func,
     model: React.PropTypes.object,
     name: React.PropTypes.string,
+    highlight: React.PropTypes.array,
   },
 
   aggregated() {
@@ -53,21 +56,20 @@ const Ability = React.createClass({
   handleChange(newValue) { this.props.handleChange(this.props.name, newValue); },
 
   render() {
+    const shouldHighlight = R.any(R.contains(R.__, this.props.highlight), this.props.attributes)
+                          || R.contains(this.props.name, this.props.highlight);
+    const highlight = shouldHighlight ? ' highlight' : '';
     return (
       <tr className="ability">
         <td className="ability-name">{this.props.name}</td>
-        <td className="number aggregate ability-aggregated">{this.aggregated()}</td>
+        <td className={'number aggregate ability-aggregated' + highlight}>
+          {this.aggregated()}
+        </td>
         <td className="number ability-points">
           <interactionElements.number
             value={this.props.model.abilities[this.props.name] || 0}
             onChange={this.handleChange} />
         </td>
-        <td className="number ability-attributes">
-          <span className="placeholder shorthand attribute-name">{this.props.attributes[0]}</span>
-          {this.props.model.attributes[this.props.attributes[0]].value}</td>
-        <td className="number ability-attributes">
-          <span className="placeholder shorthand attribute-name">{this.props.attributes[1]}</span>
-          {this.props.model.attributes[this.props.attributes[1]].value}</td>
         <td className="number ability-mod">?</td>
       </tr>
     );

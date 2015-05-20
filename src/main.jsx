@@ -15,24 +15,27 @@ const CharakterDokument = React.createClass({
     model: React.PropTypes.object,
   },
   getInitialState() {
+    let highlight = [];
+    highlight.push = (a) => this.setState({highlight: this.state.highlight.concat(a)});
+    highlight.pop = () => this.setState({highlight: this.state.highlight.slice(0, -1)});
     return {model: R.assoc('assocPath', (path, value) => {
       this.setState({model: R.assocPath(path, value, this.state.model)});
-    }, this.props.model)};
+    }, this.props.model), highlight};
   },
 
   render() {
     return (
       <div className="char-document">
         <div className="char-background">
-          <Name model={this.state.model} />
+          <Name model={this.state.model} highlight={this.state.highlight} />
         </div>
         <div className="char-attributes">
-          <Attributes model={this.state.model} />
+          <Attributes model={this.state.model} highlight={this.state.highlight} />
         </div>
         <div className="char-derived-attributes">
         </div>
         <div className="char-abilities">
-          <Abilities model={this.state.model} />
+          <Abilities model={this.state.model} highlight={this.state.highlight} />
         </div>
       </div>
       );

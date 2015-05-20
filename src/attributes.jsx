@@ -7,6 +7,7 @@ import splittermond from './splittermond';
 
 const Attributes = React.createClass({
   propTypes: {
+    highlight: React.PropTypes.array,
     model: React.PropTypes.object
   },
 
@@ -16,6 +17,8 @@ const Attributes = React.createClass({
 
   render() {
     const attributes = R.map(attribute => {
+      const shouldHighlight = R.contains(attribute.abbreviation, this.props.highlight);
+      const highlight = shouldHighlight ? ' highlight' : '';
       return (
         <tr className="attribute" key={attribute.name}>
           <td className="attribute-name">{attribute.name}</td>
@@ -25,7 +28,7 @@ const Attributes = React.createClass({
               value={this.props.model.attributes[attribute.abbreviation].start}
               onChange={this.changeAttribute.bind(this, attribute.abbreviation, 'start')} />
           </td>
-          <td className="number aggregate attribute-value">
+          <td className={'number aggregate attribute-value' + highlight}>
             <interactionElements.number
               value={this.props.model.attributes[attribute.abbreviation].value}
               onChange={this.changeAttribute.bind(this, attribute.abbreviation, 'value')} />

@@ -63,6 +63,7 @@
     background:  transparent;
 }
 
-.scrubbable:hover {
+.scrubbable:hover,
+.highlight {
   background-color: orange;
 }
