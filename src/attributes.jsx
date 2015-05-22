@@ -28,8 +28,8 @@ const Attributes = React.createClass({
       const highlight = shouldHighlight ? ' highlight' : '';
       return (
         <tr className="attribute" key={attribute.name}
-            onMouseEnter={this.handleHoverStart.bind(this, attribute)}
-            onMouseLeave={this.handleHoverEnd.bind(this, attribute)}>
+            onMouseOver={this.handleHoverStart.bind(this, attribute)}
+            onMouseOut={this.handleHoverEnd.bind(this, attribute)}>
           <td className="attribute-name">{attribute.name}</td>
           <td className="shorthand attribute-abbreviation">{attribute.abbreviation}</td>
           <td className="number attribute-start">
