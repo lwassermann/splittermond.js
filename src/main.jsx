@@ -18,6 +18,7 @@ const CharakterDokument = React.createClass({
   getInitialState() {
     const highlight = (me) => {
       let fn = R.cond(
+        [R.is(Function), R.identity],
         [R.isArrayLike, (ability) => R.either(R.contains(R.__, ability), R.eq(ability))],
         [R.complement(R.isNil), (attr) => R.ifElse(R.isArrayLike, R.any(R.eq(attr)), R.eq(attr))],
         [R.T, R.always])(me || false);
