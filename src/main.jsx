@@ -5,7 +5,7 @@ import * as R from 'ramda';
 
 import Abilities from './abilities.jsx';
 import {Attributes, DerivedAttributes} from './attributes.jsx';
-import {TextInput} from './interaction-elements.jsx';
+import {CharBackground} from './background.jsx';
 import {someChar} from './storage';
 
 window.React = React;
@@ -38,7 +38,7 @@ const CharakterDokument = React.createClass({
     return (
       <div className="char-document">
         <div className="char-background">
-          <Name model={this.state.model} highlight={this.state.highlight} />
+          <CharBackground model={this.state.model} highlight={this.state.highlight} />
         </div>
         <div className="char-attributes">
           <Attributes model={this.state.model} highlight={this.state.highlight} />
@@ -51,23 +51,6 @@ const CharakterDokument = React.createClass({
         </div>
       </div>
       );
-  }
-});
-
-const Name = React.createClass({
-  propTypes: {
-    model: React.PropTypes.object,
-  },
-  renameTo(name) {
-    this.props.model.assocPath(['name'], name);
-  },
-
-  render() {
-    return (
-      <label className="char-name">
-      Name: <TextInput content={this.props.model.name} onChange={this.renameTo} />
-      </label>
-    );
   }
 });
 
