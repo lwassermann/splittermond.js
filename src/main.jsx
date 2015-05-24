@@ -10,30 +10,23 @@ import {someChar} from './storage';
 
 window.React = React;
 
+
 const CharakterDokument = React.createClass({
   propTypes: {
     model: React.PropTypes.object,
   },
   getInitialState() {
-    const decorateStateArray = (array) => {
-      array.highlight = (arg) => this.setState({highlight:
-        decorateStateArray(this.state.highlight.concat(arg))});
-      array.downlight = (arg) => {
-        var highlight = decorateStateArray(
-          R.reject(
-            R.ifElse(
-              R.isArrayLike,
-              R.compose(R.any, R.eq),
-              R.eq)
-                (arg),
-            this.state.highlight))
-        return this.setState({highlight});
-      }
-      return array;
+    const highlight = (me) => {
+      let fn = R.cond(
+        [R.isArrayLike, (ability) => R.either(R.contains(R.__, ability), R.eq(ability))],
+        [R.complement(R.isNil), (attr) => R.ifElse(R.isArrayLike, R.any(R.eq(attr)), R.eq(attr))],
+        [R.T, R.always])(me || false);
+      fn.focus = (newTarget) => this.setState({highlight: highlight(newTarget)});
+      return fn;
     };
     return {model: R.assoc('assocPath', (path, value) => {
       this.setState({model: R.assocPath(path, value, this.state.model)});
-    }, this.props.model), highlight: decorateStateArray([])};
+    }, this.props.model), highlight: highlight(null)};
   },
 
   render() {

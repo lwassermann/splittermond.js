@@ -8,7 +8,7 @@ import splittermond from './splittermond';
 const Abilities = React.createClass({
   propTypes: {
     model: React.PropTypes.object,
-    highlight: React.PropTypes.array,
+    highlight: React.PropTypes.func,
   },
 
   changeAbility(ability, newValue) {
@@ -44,7 +44,7 @@ const Ability = React.createClass({
     handleChange: React.PropTypes.func,
     model: React.PropTypes.object,
     name: React.PropTypes.string,
-    highlight: React.PropTypes.array,
+    highlight: React.PropTypes.func,
   },
 
   aggregated() {
@@ -56,16 +56,14 @@ const Ability = React.createClass({
   handleChange(newValue) { this.props.handleChange(this.props.name, newValue); },
 
   highlighAttributes() {
-    this.props.highlight.highlight(this.props.attributes);
+    this.props.highlight.focus(this.props.attributes);
   },
   stopHighlightingAttributes() {
-    this.props.highlight.downlight(this.props.attributes);
+    this.props.highlight.focus();
   },
 
   render() {
-    const shouldHighlight = R.any(R.contains(R.__, this.props.highlight), this.props.attributes)
-                          || R.contains(this.props.name, this.props.highlight);
-    const highlight = shouldHighlight ? ' highlight' : '';
+    const highlight = this.props.highlight(this.props.attributes) ? ' highlight' : '';
     return (
       <tr className="ability"
           onMouseOver={this.highlighAttributes}

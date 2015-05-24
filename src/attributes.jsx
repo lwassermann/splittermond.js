@@ -7,7 +7,7 @@ import splittermond from './splittermond';
 
 const Attributes = React.createClass({
   propTypes: {
-    highlight: React.PropTypes.array,
+    highlight: React.PropTypes.func,
     model: React.PropTypes.object
   },
 
@@ -16,16 +16,15 @@ const Attributes = React.createClass({
   },
 
   highligh(attribute) {
-    this.props.highlight.highlight(attribute.abbreviation);
+    this.props.highlight.focus(attribute.abbreviation);
   },
-  stopHighlight(attribute) {
-    this.props.highlight.downlight(attribute.abbreviation);
+  stopHighlight() {
+    this.props.highlight.focus();
   },
 
   render() {
     const attributes = R.map(attribute => {
-      const shouldHighlight = R.contains(attribute.abbreviation, this.props.highlight);
-      const highlight = shouldHighlight ? ' highlight' : '';
+      const highlight = this.props.highlight(attribute.abbreviation) ? ' highlight' : '';
       return (
         <tr className="attribute" key={attribute.name}
             onMouseOver={this.highligh.bind(this, attribute)}
