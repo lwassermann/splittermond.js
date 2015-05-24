@@ -1,7 +1,7 @@
 import React from 'react';
 import * as R from 'ramda';
 
-import interactionElements from './interaction-elements.jsx';
+import {ScrubbableNumber} from './interaction-elements.jsx';
 
 import splittermond from './splittermond';
 
@@ -32,12 +32,12 @@ const Attributes = React.createClass({
           <td className="attribute-name">{attribute.name}</td>
           <td className="shorthand attribute-abbreviation">{attribute.abbreviation}</td>
           <td className="number attribute-start">
-            <interactionElements.number
+            <ScrubbableNumber
               value={this.props.model.attributes[attribute.abbreviation].start}
               onChange={this.changeAttribute.bind(this, attribute.abbreviation, 'start')} />
           </td>
           <td className={'number aggregate attribute-value' + highlight}>
-            <interactionElements.number
+            <ScrubbableNumber
               value={this.props.model.attributes[attribute.abbreviation].value}
               onChange={this.changeAttribute.bind(this, attribute.abbreviation, 'value')} />
           </td>

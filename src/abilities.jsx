@@ -1,7 +1,7 @@
 import React from 'react';
 import * as R from 'ramda';
 
-import interactionElements from './interaction-elements.jsx';
+import {ScrubbableNumber} from './interaction-elements.jsx';
 
 import splittermond from './splittermond';
 
@@ -73,7 +73,7 @@ const Ability = React.createClass({
           {this.aggregated()}
         </td>
         <td className="number ability-points">
-          <interactionElements.number
+          <ScrubbableNumber
             value={this.props.model.abilities[this.props.name] || 0}
             onChange={this.handleChange} />
         </td>
