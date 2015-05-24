@@ -18,32 +18,72 @@ const splittermond = {
       {abbreviation: 'str', name: 'Stärke'},
       {abbreviation: 'ver', name: 'Verstand'},
       {abbreviation: 'wil', name: 'Willenskraft'}],
-    derivedAttributes: {
-      gk(char) {
-        return char.race.gk;
+    derivedAttributes: [
+      {
+        name: 'Größenklasse',
+        abbreviation: 'gk',
+        gk(char) {
+          return char.race.gk;
+        },
+        derivedFrom: ['race'],
       },
-      gsw(char) {
-        return char.derivedAttributes.gk + char.attributes.bew;
+      {
+        name: 'Geschwindigkeit',
+        abbreviation: 'gsw',
+        gsw(char) {
+          return char.derivedAttributes.gk + char.attributes.bew;
+        },
+        derivedFrom: ['gk', 'bew'],
       },
-      ini(char) {
-        return 10 - char.attributes.int;
+      {
+        name: 'Initiative',
+        abbreviation: 'ini',
+        ini(char) {
+          return 10 - char.attributes.int;
+        },
+        derivedFrom: ['int'],
       },
-      lp(char) {
-        return char.derivedAttributes.gk + char.attributes.kon;
+      {
+        name: 'Lebenspunkte',
+        abbreviation: 'lp',
+        lp(char) {
+          return char.derivedAttributes.gk + char.attributes.kon;
+        },
+        derivedFrom: ['gk', 'kon'],
       },
-      fo(char) {
-        return 2 * (char.attributes.mys + char.attributes.wil);
+      {
+        name: 'Fokuspunkte',
+        abbreviation: 'fo',
+        fo(char) {
+          return 2 * (char.attributes.mys + char.attributes.wil);
+        },
+        derivedFrom: ['mys', 'wil'],
       },
-      vtd(char) {
-        return 12 + char.attributes.bew + char.attributes.str;
+      {
+        name: 'Verteidigung',
+        abbreviation: 'vtd',
+        vtd(char) {
+          return 12 + char.attributes.bew + char.attributes.str;
+        },
+        derivedFrom: ['bew', 'str'],
       },
-      gw(char) {
-        return 12 + char.attributes.ver + char.attributes.wil;
+      {
+        name: 'Geistiger Widerstand',
+        abbreviation: 'gw',
+        gw(char) {
+          return 12 + char.attributes.ver + char.attributes.wil;
+        },
+        derivedFrom: ['ver', 'wil'],
       },
-      kw(char) {
-        return 12 + char.attributes.kon + char.attributes.wil;
+      {
+        name: 'Körperlicher Widerstand',
+        abbreviation: 'kw',
+        kw(char) {
+          return 12 + char.attributes.kon + char.attributes.wil;
+        },
+        derivedFrom: ['kon', 'wil'],
       },
-    },
+    ],
     races: [
       {name: 'Alb',    gk: 5, strengths: ['Attraktivität', 'Scharfes Gehör', 'Dämmersicht']},
       {name: 'Gnom',   gk: 3, strengths: ['Feensinn', 'Hoher Geistiger Widerstand', 'Flink']},
