@@ -55,12 +55,21 @@ const Ability = React.createClass({
 
   handleChange(newValue) { this.props.handleChange(this.props.name, newValue); },
 
+  highlighAttributes() {
+    this.props.highlight.highlight(this.props.attributes);
+  },
+  stopHighlightingAttributes() {
+    this.props.highlight.downlight(this.props.attributes);
+  },
+
   render() {
     const shouldHighlight = R.any(R.contains(R.__, this.props.highlight), this.props.attributes)
                           || R.contains(this.props.name, this.props.highlight);
     const highlight = shouldHighlight ? ' highlight' : '';
     return (
-      <tr className="ability">
+      <tr className="ability"
+          onMouseOver={this.highlighAttributes}
+          onMouseOut={this.stopHighlightingAttributes}>
         <td className="ability-name">{this.props.name}</td>
         <td className={'number aggregate ability-aggregated' + highlight}>
           {this.aggregated()}

@@ -15,18 +15,25 @@ const CharakterDokument = React.createClass({
     model: React.PropTypes.object,
   },
   getInitialState() {
-    const caffeinate = (array) => {
+    const decorateStateArray = (array) => {
       array.highlight = (arg) => this.setState({highlight:
-        caffeinate(this.state.highlight.concat(arg).slice(-2))});
-      array.downlight = (arg) => this.setState({highlight:
-        caffeinate(arg
-                    ? R.reject(R.eq(arg), this.state.highlight)
-                    : this.state.highlight.slice(0, -1))});
+        decorateStateArray(this.state.highlight.concat(arg))});
+      array.downlight = (arg) => {
+        var highlight = decorateStateArray(
+          R.reject(
+            R.ifElse(
+              R.isArrayLike,
+              R.compose(R.any, R.eq),
+              R.eq)
+                (arg),
+            this.state.highlight))
+        return this.setState({highlight});
+      }
       return array;
     };
     return {model: R.assoc('assocPath', (path, value) => {
       this.setState({model: R.assocPath(path, value, this.state.model)});
-    }, this.props.model), highlight: caffeinate([])};
+    }, this.props.model), highlight: decorateStateArray([])};
   },
 
   render() {
