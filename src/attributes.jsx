@@ -15,7 +15,7 @@ const Attributes = React.createClass({
     this.props.model.assocPath(['attributes', name, type], newValue);
   },
 
-  highligh(attribute) {
+  highlight(attribute) {
     this.props.highlight.focus(attribute.abbreviation);
   },
   stopHighlight() {
@@ -27,7 +27,7 @@ const Attributes = React.createClass({
       const highlight = this.props.highlight(attribute.abbreviation) ? ' highlight' : '';
       return (
         <tr className="attribute" key={attribute.name}
-            onMouseOver={this.highligh.bind(this, attribute)}
+            onMouseOver={this.highlight.bind(this, attribute)}
             onMouseOut={this.stopHighlight.bind(this, attribute)}>
           <td className="attribute-name">{attribute.name}</td>
           <td className="shorthand attribute-abbreviation">{attribute.abbreviation}</td>
@@ -54,4 +54,44 @@ const Attributes = React.createClass({
   }
 });
 
+const DerivedAttributes = React.createClass({
+  propTypes: {
+    highlight: React.PropTypes.func,
+    model: React.PropTypes.object
+  },
+  highlight(attribute) {
+    this.props.highlight.focus(attribute.derivedFrom);
+  },
+  stopHighlight() {
+    this.props.highlight.focus();
+  },
+
+  render() {
+    const attributes = R.map(dAttribute => {
+      const highlight = this.props.highlight(dAttribute.derivedFrom) ? ' highlight' : '';
+      return (
+        <tr className="derived-attribute" key={dAttribute.name}
+            onMouseOver={this.highlight.bind(this, dAttribute)}
+            onMouseOut={this.stopHighlight.bind(this, dAttribute)}>
+          <td className="derived-attribute-name">{dAttribute.name}</td>
+          <td className="shorthand derived-attribute-abbreviation">{dAttribute.abbreviation}</td>
+          <td className={'number aggregate derived-attribute-value' + highlight}>
+            {dAttribute[dAttribute.abbreviation](this.props.model)}
+          </td>
+          <td className="number derived-attribtue-mod">?</td>
+          <td className="number derived-attribtue-temp">?</td>
+        </tr>
+      );
+    }, splittermond.derivedAttributes);
+    return (
+      <table className="attributes">
+        <thead><tr><th>Name</th><th></th><th>Wert</th><th>Mod</th><th>temp</th></tr></thead>
+        <tbody>{attributes}</tbody>
+      </table>
+    );
+  },
+});
+
 export default Attributes;
+export {Attributes, DerivedAttributes};
+

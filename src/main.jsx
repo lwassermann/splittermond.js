@@ -4,7 +4,7 @@ import React from 'react';
 import * as R from 'ramda';
 
 import Abilities from './abilities.jsx';
-import Attributes from './attributes.jsx';
+import {Attributes, DerivedAttributes} from './attributes.jsx';
 import {TextInput} from './interaction-elements.jsx';
 import {someChar} from './storage';
 
@@ -13,6 +13,10 @@ window.React = React;
 
 const CharakterDokument = React.createClass({
   propTypes: {
+    model: React.PropTypes.object,
+  },
+  stateTypes: {
+    highlight: React.PropTypes.func,
     model: React.PropTypes.object,
   },
   getInitialState() {
@@ -40,6 +44,7 @@ const CharakterDokument = React.createClass({
           <Attributes model={this.state.model} highlight={this.state.highlight} />
         </div>
         <div className="char-derived-attributes">
+          <DerivedAttributes model={this.state.model} highlight={this.state.highlight} />
         </div>
         <div className="char-abilities">
           <Abilities model={this.state.model} highlight={this.state.highlight} />

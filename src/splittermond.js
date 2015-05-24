@@ -23,7 +23,7 @@ const splittermond = {
         name: 'Größenklasse',
         abbreviation: 'gk',
         gk(char) {
-          return char.race.gk;
+          return char.race && char.race.gk;
         },
         derivedFrom: ['race'],
       },
@@ -31,7 +31,7 @@ const splittermond = {
         name: 'Geschwindigkeit',
         abbreviation: 'gsw',
         gsw(char) {
-          return char.derivedAttributes.gk + char.attributes.bew;
+          return char.derivedAttributes && (char.derivedAttributes.gk + char.attributes.bew.value);
         },
         derivedFrom: ['gk', 'bew'],
       },
@@ -39,7 +39,7 @@ const splittermond = {
         name: 'Initiative',
         abbreviation: 'ini',
         ini(char) {
-          return 10 - char.attributes.int;
+          return 10 - char.attributes.int.value;
         },
         derivedFrom: ['int'],
       },
@@ -47,7 +47,7 @@ const splittermond = {
         name: 'Lebenspunkte',
         abbreviation: 'lp',
         lp(char) {
-          return char.derivedAttributes.gk + char.attributes.kon;
+          return char.derivedAttributes && (char.derivedAttributes.gk + char.attributes.kon.value);
         },
         derivedFrom: ['gk', 'kon'],
       },
@@ -55,7 +55,7 @@ const splittermond = {
         name: 'Fokuspunkte',
         abbreviation: 'fo',
         fo(char) {
-          return 2 * (char.attributes.mys + char.attributes.wil);
+          return 2 * (char.attributes.mys.value + char.attributes.wil.value);
         },
         derivedFrom: ['mys', 'wil'],
       },
@@ -63,7 +63,7 @@ const splittermond = {
         name: 'Verteidigung',
         abbreviation: 'vtd',
         vtd(char) {
-          return 12 + char.attributes.bew + char.attributes.str;
+          return 12 + char.attributes.bew.value + char.attributes.str.value;
         },
         derivedFrom: ['bew', 'str'],
       },
@@ -71,15 +71,15 @@ const splittermond = {
         name: 'Geistiger Widerstand',
         abbreviation: 'gw',
         gw(char) {
-          return 12 + char.attributes.ver + char.attributes.wil;
+          return 12 + char.attributes.ver.value + char.attributes.wil.value;
         },
         derivedFrom: ['ver', 'wil'],
       },
       {
-        name: 'Körperlicher Widerstand',
+        name: 'Körperl. Widerstand',
         abbreviation: 'kw',
         kw(char) {
-          return 12 + char.attributes.kon + char.attributes.wil;
+          return 12 + char.attributes.kon.value + char.attributes.wil.value;
         },
         derivedFrom: ['kon', 'wil'],
       },
