@@ -31,7 +31,7 @@ const splittermond = {
         name: 'Geschwindigkeit',
         abbreviation: 'gsw',
         gsw(char) {
-          return char.derivedAttributes && (char.derivedAttributes.gk + char.attributes.bew.value);
+          return char.race && (char.race.gk + char.attributes.bew.value);
         },
         derivedFrom: ['gk', 'bew'],
       },
@@ -47,7 +47,7 @@ const splittermond = {
         name: 'Lebenspunkte',
         abbreviation: 'lp',
         lp(char) {
-          return char.derivedAttributes && (char.derivedAttributes.gk + char.attributes.kon.value);
+          return char.race && (char.race.gk + char.attributes.kon.value);
         },
         derivedFrom: ['gk', 'kon'],
       },

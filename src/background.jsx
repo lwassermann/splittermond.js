@@ -36,15 +36,7 @@ const CharBackground = React.createClass({
               content={this.props.model.background.culture}
               onChange={this.setTo.bind(this, 'culture')} />
         </label>
-        <label className={'char-background char-race'
-                          + (this.props.highlight('race') ? ' highlight' : '')}
-            onMouseOver={this.props.highlight.focus.bind(null, 'race')}
-            onMouseOut={this.props.highlight.focus.bind(null, null)}>
-          <span className="descriptor">Rasse</span>
-          <TextInput
-              content={this.props.model.background.race}
-              onChange={this.setTo.bind(this, 'race')} />
-        </label>
+        <Race {...this.props}/>
         <label className="char-background char-hair-color">
           <span className="descriptor">Haarfarbe</span>
           <TextInput
@@ -96,6 +88,40 @@ const CharBackground = React.createClass({
       </div>
     );
   }
+});
+
+const Race = React.createClass({
+  propTypes: {
+    highlight: React.PropTypes.func.isRequired,
+    model: React.PropTypes.object.isRequired,
+  },
+
+  handleChange(event) {
+    const race = R.find(R.propEq('name', event.target.value), splittermond.races);
+    this.props.model.assocPath(['race'], race);
+  },
+
+  handleHoverStart() {
+    return this.props.highlight.focus('race');
+  },
+  handleHoverEnd() {
+    return this.props.highlight.focus();
+  },
+
+  render() {
+    return (
+      <label className={'char-background char-race'
+                        + (this.props.highlight('race') ? ' highlight' : '')}
+          onMouseOver={this.handleHoverStart} onMouseOut={this.handleHoverEnd} >
+        <span className="descriptor">Rasse</span>
+        <select value={this.props.model.race && this.props.model.race.name} onChange={this.handleChange}>
+          <option></option>
+          {splittermond.races.map(race => {
+            return (<option key={race.name} value={race.name}>{race.name}</option>);
+          })}
+        </select>
+      </label>);
+  },
 });
 
 export default CharBackground;
