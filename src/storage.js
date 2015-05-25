@@ -3,7 +3,7 @@
 import R from 'ramda';
 
 const defaultChar = {
-  name: '',
+  background: {},
   attributes: {
     aus: {value: 0, start: 0},
     bew: {value: 0, start: 0},
@@ -18,7 +18,9 @@ const defaultChar = {
 };
 
 const someChar = R.merge(defaultChar, {
-  name: 'Charley',
+  background: {
+    name: 'Charley',
+  },
   attributes: {
     aus: {value: 1, start: 1},
     bew: {value: 2, start: 2},
