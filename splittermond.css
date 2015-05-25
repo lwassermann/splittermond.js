@@ -1,3 +1,10 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+table {
+  border-spacing: 0;
+}
+
 .placeholder {
   position: absolute;
   display: block;
@@ -12,8 +19,8 @@
 .overlay {
     z-index: 1000;
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
@@ -24,6 +31,7 @@
 
 .number {
   text-align: center;
+  min-width: 2em;
 }
 
 .aggregate {
@@ -32,10 +40,6 @@
 
 .shorthand {
     text-transform: uppercase;
-}
-
-.abilities {
-  border-spacing: 4px;
 }
 
 .ability-attributes {
@@ -77,6 +81,37 @@
     display: table-cell;
 }
 
-.char-derived-attributes, .char-attributes, .char-background, .char-abilities {
-    float: left;
+.char-document{
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: -1em 0 0 -1em;
+}
+
+.char-cell {
+  min-width: 20em;
+  flex: 1 1 30%;
+  margin: 1em 0 0 1em;
+  background-color: lightblue;
+  border-radius: 3px;
+}
+
+.char-info-part {
+  /* background: lightblue; */
+  padding: .8em 1em 0;
+  border-radius: 3px;
+}
+
+#content {
+  margin: 2em auto;
+  width: 80%;
+}
+
+
+.char-info-part::after {
+    content:  '\00a0';
+    display: block;
+    margin-top: 1em;
+    height: 0;
+    visibility: hidden;
 }

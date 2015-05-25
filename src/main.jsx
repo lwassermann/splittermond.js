@@ -42,11 +42,31 @@ const CharakterDokument = React.createClass({
   render() {
     return (
       <div className="char-document">
-        <CharBackground model={this.state.model} highlight={this.state.highlight} />
-        <Attributes model={this.state.model} highlight={this.state.highlight} />
-        <DerivedAttributes model={this.state.model} highlight={this.state.highlight} />
-        <Abilities model={this.state.model} highlight={this.state.highlight} />
-        <Resources model={this.state.model} highlight={this.state.highlight} />
+        <div className="char-cell">
+          <div className="char-info-part">
+            <CharBackground model={this.state.model} highlight={this.state.highlight} />
+          </div>
+        </div>
+        <div className="char-cell">
+          <div className="char-info-part">
+            <Attributes model={this.state.model} highlight={this.state.highlight} />
+          </div>
+        </div>
+        <div className="char-cell">
+          <div className="char-info-part">
+            <DerivedAttributes model={this.state.model} highlight={this.state.highlight} />
+          </div>
+        </div>
+        <div className="char-cell">
+          <div className="char-info-part">
+            <Abilities model={this.state.model} highlight={this.state.highlight} />
+          </div>
+        </div>
+        <div className="char-cell">
+          <div className="char-info-part">
+            <Resources model={this.state.model} highlight={this.state.highlight} />
+          </div>
+        </div>
       </div>
       );
   }
