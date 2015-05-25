@@ -29,26 +29,24 @@ const CharakterDokument = React.createClass({
       fn.focus = (newTarget) => this.setState({highlight: highlight(newTarget)});
       return fn;
     };
-    return {model: R.assoc('assocPath', (path, value) => {
-      this.setState({model: R.assocPath(path, value, this.state.model)});
-    }, this.props.model), highlight: highlight(null)};
+
+    const assocPath = (path, value) => {
+      const model = R.assocPath(path, value, R.defaultTo(this.state.model, this.state.model.next));
+      this.state.model.next = model;
+      this.setState({model});
+    };
+
+    return {model: R.assoc('assocPath', assocPath, this.props.model), highlight: highlight(null)};
   },
 
   render() {
     return (
       <div className="char-document">
-        <div className="char-background">
-          <CharBackground model={this.state.model} highlight={this.state.highlight} />
-        </div>
-        <div className="char-attributes">
-          <Attributes model={this.state.model} highlight={this.state.highlight} />
-        </div>
-        <div className="char-derived-attributes">
-          <DerivedAttributes model={this.state.model} highlight={this.state.highlight} />
-        </div>
-        <div className="char-abilities">
-          <Abilities model={this.state.model} highlight={this.state.highlight} />
-        </div>
+        <CharBackground model={this.state.model} highlight={this.state.highlight} />
+        <Attributes model={this.state.model} highlight={this.state.highlight} />
+        <DerivedAttributes model={this.state.model} highlight={this.state.highlight} />
+        <Abilities model={this.state.model} highlight={this.state.highlight} />
+        <Resources model={this.state.model} highlight={this.state.highlight} />
       </div>
       );
   }

@@ -26,7 +26,7 @@ const Abilities = React.createClass({
           highlight={this.props.highlight} />);
     }, splittermond.abilities);
     return (
-      <table className="abilities">
+      <table className="char-abilities">
         <thead>
           <tr><th>Name</th><th>∑</th><th>Punkte</th><th>Mod</th></tr>
         </thead>

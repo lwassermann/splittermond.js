@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "d3": "*",
     "font-awesome": "^4.3.0",
     "ramda": "*",
     "react": "*"

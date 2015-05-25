@@ -1,6 +1,7 @@
 'use strict';
 
 import R from 'ramda';
+import splittermond from './splittermond';
 
 const defaultChar = {
   background: {},
@@ -21,6 +22,7 @@ const someChar = R.merge(defaultChar, {
   background: {
     name: 'Charley',
   },
+  race: R.find(R.propEq('name', 'Mensch'), splittermond.races),
   attributes: {
     aus: {value: 1, start: 1},
     bew: {value: 2, start: 2},

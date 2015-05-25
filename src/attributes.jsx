@@ -32,21 +32,19 @@ const Attributes = React.createClass({
           <td className="attribute-name">{attribute.name}</td>
           <td className="shorthand attribute-abbreviation">{attribute.abbreviation}</td>
           <td className="number attribute-start">
-            <ScrubbableNumber
-              value={this.props.model.attributes[attribute.abbreviation].start}
-              onChange={this.changeAttribute.bind(this, attribute.abbreviation, 'start')} />
+            {this.props.model.attributes[attribute.abbreviation].start}
           </td>
           <td className={'number aggregate attribute-value' + highlight}>
             <ScrubbableNumber
               value={this.props.model.attributes[attribute.abbreviation].value}
-              onChange={this.changeAttribute.bind(this, attribute.abbreviation, 'value')} />
+              onChange={this.changeAttribute.bind(this, attribute.abbreviation)} />
           </td>
           <td className="number attribtue-mod">?</td>
         </tr>
       );
     }, splittermond.attributes);
     return (
-      <table className="attributes">
+      <table className="char-attributes">
         <thead><tr><th>Name</th><th></th><th>Start</th><th>Wert</th><th>Mod</th></tr></thead>
         <tbody>{attributes}</tbody>
       </table>
@@ -86,7 +84,7 @@ const DerivedAttributes = React.createClass({
       );
     }, splittermond.derivedAttributes);
     return (
-      <table className="attributes">
+      <table className="char-derived-attributes">
         <thead><tr><th>Name</th><th></th><th>Wert</th><th>Mod</th><th>temp</th></tr></thead>
         <tbody>{attributes}</tbody>
       </table>

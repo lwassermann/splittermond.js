@@ -65,14 +65,18 @@
   background-color: orange;
 }
 
-.char-background .descriptor {
-    display: table-cell;
-}
-
-.char-background .text-input {
-    display: table-cell;
-}
-
-.char-background {
+.char-fact {
     display: table-row;
+}
+
+.char-fact .descriptor {
+    display: table-cell;
+}
+
+.char-fact .text-input {
+    display: table-cell;
+}
+
+.char-derived-attributes, .char-attributes, .char-background, .char-abilities {
+    float: left;
 }

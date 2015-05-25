@@ -110,7 +110,7 @@ const Race = React.createClass({
 
   render() {
     return (
-      <label className={'char-background char-race'
+      <label className={'char-fact char-race'
                         + (this.props.highlight('race') ? ' highlight' : '')}
           onMouseOver={this.handleHoverStart} onMouseOut={this.handleHoverEnd} >
         <span className="descriptor">Rasse</span>
