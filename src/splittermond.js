@@ -89,8 +89,10 @@ const splittermond = {
       {name: 'Gnom',   gk: 3, strengths: ['Feensinn', 'Hoher Geistiger Widerstand', 'Flink']},
       {name: 'Mensch', gk: 5, strengths: ['Zusätzliche Splitterpunkte']},
       {name: 'Varg',   gk: 6, strengths: ['Natürlicher Rüstungsschutz', 'Ausdauernd', 'Natürliche Waffe']},
-      {name: 'Zwerg',  gk: 4, strengths: ['Giftresistenz', 'Robust', 'Orientierungssinn']}],
-    strengths: [{name: 'Attraktivität', cost: 1, start: true},
+      {name: 'Zwerg',  gk: 4, strengths: ['Giftresistenz', 'Robust', 'Orientierungssinn']}
+    ],
+    strengths: [
+      {name: 'Attraktivität', cost: 1, start: true},
       {name: 'Ausdauernd', cost: 1},
       {name: 'Bastler', cost: 1},
       {name: 'Dämmersicht', cost: 2, start: true},
@@ -157,10 +159,18 @@ const splittermond = {
       {name: 'Segen der Mondkraft',
           influences: 'Ruhephase, Verschnaufpause, Vergiftung, Krank'}],
 
-    resources: ['Ansehen', 'Gefolge', 'Kontakte',
-      'Kreatur', 'Mentor', 'Rang',
-      'Relikt', 'Stand', 'Vermögen', 'Zuflucht'],
-    coreResources: ['Ansehen', 'Kontakte', 'Stand', 'Vermögen'],
+    resources: [
+      {name: 'Ansehen', core: true, description: ['']},
+      {name: 'Gefolge', core: false, description: ['']},
+      {name: 'Kontakte', core: true, description: ['']},
+      {name: 'Kreatur', core: false, description: ['']},
+      {name: 'Mentor', core: false, description: ['']},
+      {name: 'Rang', core: false, description: ['']},
+      {name: 'Relikt', core: false, description: ['']},
+      {name: 'Stand', core: true, description: ['']},
+      {name: 'Vermögen', core: true, description: ['']},
+      {name: 'Zuflucht', core: false, description: ['']},
+    ],
 
     abilities: [
       {name: 'Akrobatik', attributes: ['bew', 'str'],

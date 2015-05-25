@@ -11,8 +11,11 @@ const Attributes = React.createClass({
     model: React.PropTypes.object.isRequired
   },
 
-  changeAttribute(name, type, newValue) {
-    this.props.model.assocPath(['attributes', name, type], newValue);
+  changeAttribute(name, newValue) {
+    this.props.model.assocPath(['attributes', name, 'value'], newValue);
+    if (!this.props.model.roamingTheWorlds) {
+      this.props.model.assocPath(['attributes', name, 'start'], newValue);
+    }
   },
 
   highlight(attribute) {

@@ -124,5 +124,11 @@ const Race = React.createClass({
   },
 });
 
+const Resources = React.createClass({
+  render() {
+    return (<span>Hallo Welt.</span>);
+  },
+});
+
 export default CharBackground;
-export {CharBackground};
+export {CharBackground, Resources};

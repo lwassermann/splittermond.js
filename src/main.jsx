@@ -5,7 +5,7 @@ import * as R from 'ramda';
 
 import Abilities from './abilities.jsx';
 import {Attributes, DerivedAttributes} from './attributes.jsx';
-import {CharBackground} from './background.jsx';
+import {CharBackground, Resources} from './background.jsx';
 import {someChar} from './storage';
 
 window.React = React;
