@@ -5,88 +5,66 @@ import {ScrubbableNumber, TextInput} from './interaction-elements.jsx';
 
 import splittermond from './splittermond';
 
+const LabeledTextContent = React.createClass({
+  propTypes: {
+    className: React.PropTypes.string.isRequired,
+    model: React.PropTypes.object.isRequired,
+    name: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    propertyName: React.PropTypes.string.isRequired,
+    placeholder: React.PropTypes.string,
+  },
+  handleChange(value) {
+    this.props.onChange(this.props.propertyName, value);
+  },
+
+  render() {
+    return (
+      <label className={'char-fact ' + this.props.className}>
+        <span className="descriptor">{this.props.name}</span>
+        <TextInput
+            content={this.props.model.background[this.props.propertyName]}
+            onChange={this.handleChange}
+            placeholder={this.props.placeholder} />
+      </label>
+    );
+  },
+});
+
 const CharBackground = React.createClass({
   propTypes: {
     highlight: React.PropTypes.func.isRequired,
     model: React.PropTypes.object.isRequired,
   },
 
-  setTo(propertyName, value) {
+  handleChange(propertyName, value) {
     return this.props.model.assocPath(['background', propertyName], value);
   },
 
   render() {
-    return (
-      <div className="char-background">
-        <label className="char-background char-name">
-          <span className="descriptor">Name</span>
-          <TextInput
-              content={this.props.model.background.name}
-              onChange={this.setTo.bind(this, 'name')} />
-        </label>
-        <label className="char-background char-education">
-          <span className="descriptor">Ausbildung</span>
-          <TextInput
-              content={this.props.model.background.education}
-              onChange={this.setTo.bind(this, 'education')} />
-        </label>
-        <label className="char-background char-culture">
-          <span className="descriptor">Kultur</span>
-          <TextInput
-              content={this.props.model.background.culture}
-              onChange={this.setTo.bind(this, 'culture')} />
-        </label>
-        <Race {...this.props}/>
-        <label className="char-background char-hair-color">
-          <span className="descriptor">Haarfarbe</span>
-          <TextInput
-              content={this.props.model.background.hairColor}
-              onChange={this.setTo.bind(this, 'hairColor')} />
-        </label>
-        <label className="char-background char-eye-color">
-          <span className="descriptor">Augenfarbe</span>
-          <TextInput
-              content={this.props.model.background.eyeColor}
-              onChange={this.setTo.bind(this, 'eyeColor')} />
-        </label>
-        <label className="char-background char-skin">
-          <span className="descriptor">Teint</span>
-          <TextInput
-              content={this.props.model.background.skin}
-              onChange={this.setTo.bind(this, 'skin')} />
-        </label>
-        <label className="char-background char-ancestry">
-          <span className="descriptor">Abstammung</span>
-          <TextInput
-              content={this.props.model.background.ancestry}
-              onChange={this.setTo.bind(this, 'ancestry')} />
-        </label>
-        <label className="char-background char-sex">
-          <span className="descriptor">Geschlecht</span>
-          <TextInput
-              content={this.props.model.background.sex}
-              onChange={this.setTo.bind(this, 'sex')} />
-        </label>
-        <label className="char-background char-height">
-          <span className="descriptor">Körpergröße</span>
-          <TextInput
-              content={this.props.model.background.height}
-              onChange={this.setTo.bind(this, 'height')} />
-        </label>
-        <label className="char-background char-weight">
-          <span className="descriptor">Gewicht</span>
-          <TextInput
-              content={this.props.model.background.weight}
-              onChange={this.setTo.bind(this, 'weight')} />
-        </label>
-        <label className="char-background char-place-of-birth">
-          <span className="descriptor">Geburtsort</span>
-          <TextInput
-              content={this.props.model.background.placeOfBirth}
-              onChange={this.setTo.bind(this, 'placeOfBirth')} />
-        </label>
-      </div>
-    );
+    const elements = R.map(ea => {
+      if (React.isValidElement(ea)) {
+        return ea;
+      }
+      return (<LabeledTextContent key={ea.name} {...ea}
+                model={this.props.model} onChange={this.handleChange} />);
+    }, [
+    /* eslint-disable no-multi-spaces */
+      {className: 'char-name',           name: 'Name',        propertyName: 'name'},
+      {className: 'char-education',      name: 'Ausbildung',  propertyName: 'education'},
+      {className: 'char-culture',        name: 'Kultur',      propertyName: 'culture'},
+      (<Race {...this.props} key="race" />),
+      {className: 'char-hair-color',     name: 'Haarfarbe',   propertyName: 'hairColor'},
+      {className: 'char-eye-color',      name: 'Augenfarbe',  propertyName: 'eyeColor'},
+      {className: 'char-skin',           name: 'Teint',       propertyName: 'skin'},
+      {className: 'char-ancestry',       name: 'Abstammung',  propertyName: 'ancestry'},
+      {className: 'char-sex',            name: 'Geschlecht',  propertyName: 'sex'},
+      {className: 'char-height',         name: 'Körpergröße', propertyName: 'height'},
+      {className: 'char-weight',         name: 'Gewicht',     propertyName: 'weight'},
+      {className: 'char-place-of-birth', name: 'Geburtsort',  propertyName: 'placeOfBirth'},
+    /* eslint-enable no-multi-spaces */
+    ]);
+    return <div className="char-background">{elements}</div>;
   }
 });
 
