@@ -10,7 +10,7 @@ const n = {};
 /* eslint-disable max-len, no-multi-spaces */
 const splittermond = {
     attributes: [
-      {abbreviation: 'aus', name: 'Ausdauer'},
+      {abbreviation: 'aus', name: 'Ausstrahlung'},
       {abbreviation: 'bew', name: 'Beweglichkeit'},
       {abbreviation: 'int', name: 'Intuition'},
       {abbreviation: 'kon', name: 'Konstitution'},

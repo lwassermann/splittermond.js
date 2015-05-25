@@ -68,7 +68,9 @@ const DerivedAttributes = React.createClass({
 
   render() {
     const attributes = R.map(dAttribute => {
-      const highlight = this.props.highlight(dAttribute.derivedFrom) ? ' highlight' : '';
+      const highlight = this.props.highlight(dAttribute.abbreviation)
+        || this.props.highlight(dAttribute.derivedFrom)
+          ? ' highlight' : '';
       return (
         <tr className="derived-attribute" key={dAttribute.name}
             onMouseOver={this.highlight.bind(this, dAttribute)}

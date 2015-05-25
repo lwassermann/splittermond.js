@@ -36,7 +36,7 @@ const CharBackground = React.createClass({
               content={this.props.model.background.culture}
               onChange={this.setTo.bind(this, 'culture')} />
         </label>
-        <label className="char-race">
+        <label className={'char-race' + (this.props.highlight('race') ? ' highlight' : '')}>
           Rasse
           <TextInput
               content={this.props.model.background.race}

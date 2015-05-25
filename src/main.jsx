@@ -13,11 +13,11 @@ window.React = React;
 
 const CharakterDokument = React.createClass({
   propTypes: {
-    model: React.PropTypes.object,
+    model: React.PropTypes.object.isRequired,
   },
   stateTypes: {
-    highlight: React.PropTypes.func,
-    model: React.PropTypes.object,
+    highlight: React.PropTypes.func.isRequired,
+    model: React.PropTypes.object.isRequired,
   },
   getInitialState() {
     const highlight = (me) => {
