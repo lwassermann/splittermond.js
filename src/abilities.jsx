@@ -7,8 +7,8 @@ import splittermond from './splittermond';
 
 const Abilities = React.createClass({
   propTypes: {
-    model: React.PropTypes.object,
-    highlight: React.PropTypes.func,
+    model: React.PropTypes.object.isRequired,
+    highlight: React.PropTypes.func.isRequired,
   },
 
   changeAbility(ability, newValue) {
@@ -42,8 +42,8 @@ const Ability = React.createClass({
   propTypes: {
     attributes: React.PropTypes.array,
     handleChange: React.PropTypes.func,
-    model: React.PropTypes.object,
-    name: React.PropTypes.string,
+    model: React.PropTypes.object.isRequired,
+    name: React.PropTypes.string.isRequired,
     highlight: React.PropTypes.func,
   },
 

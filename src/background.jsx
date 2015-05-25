@@ -7,8 +7,8 @@ import splittermond from './splittermond';
 
 const CharBackground = React.createClass({
   propTypes: {
-    highlight: React.PropTypes.func,
-    model: React.PropTypes.object,
+    highlight: React.PropTypes.func.isRequired,
+    model: React.PropTypes.object.isRequired,
   },
 
   setTo(propertyName, value) {

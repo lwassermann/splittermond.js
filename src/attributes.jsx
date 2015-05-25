@@ -7,8 +7,8 @@ import splittermond from './splittermond';
 
 const Attributes = React.createClass({
   propTypes: {
-    highlight: React.PropTypes.func,
-    model: React.PropTypes.object
+    highlight: React.PropTypes.func.isRequired,
+    model: React.PropTypes.object.isRequired
   },
 
   changeAttribute(name, type, newValue) {
@@ -56,8 +56,8 @@ const Attributes = React.createClass({
 
 const DerivedAttributes = React.createClass({
   propTypes: {
-    highlight: React.PropTypes.func,
-    model: React.PropTypes.object
+    highlight: React.PropTypes.func.isRequired,
+    model: React.PropTypes.object.isRequired
   },
   highlight(attribute) {
     this.props.highlight.focus(attribute.derivedFrom);
