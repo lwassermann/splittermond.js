@@ -64,3 +64,15 @@
 .highlight {
   background-color: orange;
 }
+
+.char-background .descriptor {
+    display: table-cell;
+}
+
+.char-background .text-input {
+    display: table-cell;
+}
+
+.char-background {
+    display: table-row;
+}

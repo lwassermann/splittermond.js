@@ -12,7 +12,7 @@ const TextInput = React.createClass({
 
   render() {
     return (<input
-      className="textInput"
+      className="text-input"
       type="text"
       value={this.props.content}
       onChange={this.handleChange} />);
