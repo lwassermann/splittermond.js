@@ -103,8 +103,56 @@ const Race = React.createClass({
 });
 
 const Resources = React.createClass({
+  propTypes: {
+    highlight: React.PropTypes.func.isRequired,
+    model: React.PropTypes.object.isRequired,
+  },
+
+  handleChange(propertyName, type, value) {
+    return this.props.model.assocPath(['resources', propertyName, type], value);
+  },
+
   render() {
-    return (<span>Hallo Welt.</span>);
+    const resources = R.map(res => {
+      return (<Resource
+                        name={res.name}
+                        placeholder={res.description}
+                        onChange={this.handleChange}
+                        propertyName={res.name}
+                        value={this.props.model.resources && this.props.model.resources[res.name]
+                              || {value: 0, description: ''}} />);
+    }, splittermond.resources);
+    return (<div className="char-resources">{resources}</div>);
+  },
+});
+
+const Resource = React.createClass({
+  propTypes: {
+    value: React.PropTypes.object.isRequired,
+    name: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    propertyName: React.PropTypes.string.isRequired,
+    placeholder: React.PropTypes.string,
+  },
+
+  handleTextChange(value) {
+    this.props.onChange(this.props.propertyName, 'description', value);
+  },
+  handleValueChange(value) {
+    this.props.onChange(this.props.propertyName, 'value', value);
+  },
+
+  render() {
+    return (
+      <label className="Resource">
+        <span className="descriptor">{this.props.name}</span>
+        <ScrubbableNumber />
+        <TextInput
+            content={this.props.value.description}
+            onChange={this.handleTextChange}
+            placeholder={this.props.placeholder} />
+      </label>
+    );
   },
 });
 
