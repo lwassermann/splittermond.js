@@ -41,6 +41,9 @@ const CharacterStore = {
   },
   get(id) {
     return this.getAll()[id];
+  },
+  getNamed(name) {
+    return this.getAll().filter(R.pathEq(['background', 'name'], name));
   }
 };
 
