@@ -35,4 +35,10 @@ const someChar = R.merge(defaultChar, {
   },
 });
 
-export {someChar, defaultChar};
+const CharacterStore = {
+  getAll: function() {
+    return [defaultChar, someChar];
+  }
+};
+
+export {CharacterStore};
