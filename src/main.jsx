@@ -20,7 +20,7 @@ const App = React.createClass({
         <ul>
           <li><Link to="/chars">Chars</Link></li>
           <li><Link to="/char/1">Charley</Link></li>
-          <li><Link to="/fighting">Fithing</Link></li>
+          <li><Link to="/fighting">Figthing</Link></li>
         </ul>
         <div className="content">
           {this.props.children}
