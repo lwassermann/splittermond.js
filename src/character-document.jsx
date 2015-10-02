@@ -7,9 +7,13 @@ import Abilities from './abilities.jsx';
 import {Attributes, DerivedAttributes} from './attributes.jsx';
 import {CharBackground, Resources} from './background.jsx';
 
+import CharacterStore from './storage.js';
+
 const CharacterDokument = React.createClass({
   propTypes: {
-    model: React.PropTypes.object.isRequired,
+    params: React.PropTypes.shape({
+      id: React.PropTypes.number
+    }).isRequired,
   },
   stateTypes: {
     highlight: React.PropTypes.func.isRequired,
@@ -32,7 +36,10 @@ const CharacterDokument = React.createClass({
       this.setState({model});
     };
 
-    return {model: R.assoc('assocPath', assocPath, this.props.model), highlight: highlight(null)};
+    return {
+      model: R.assoc('assocPath', assocPath, CharacterStore.get(this.props.params.id)),
+      highlight: highlight(null)
+    };
   },
 
   render() {
@@ -68,5 +75,11 @@ const CharacterDokument = React.createClass({
   }
 });
 
+const CharacterDokuments = React.createClass({
+  render() {
+    return (<div>Hello Characters.</div>);
+  }
+});
+
 export default CharacterDokument;
-export {CharacterDokument};
+export {CharacterDokument, CharacterDokuments};
